@@ -22,38 +22,95 @@
             white-space: nowrap;
             border-right: 3px solid;
             width: 0;
-            animation: typing 3.5s steps(12) forwards, blink 0.75s step-end infinite, glitch 2s infinite;
             position: relative;
+            animation: typing 3.5s steps(12) forwards, blink 0.75s step-end infinite, glitch 2s infinite;
         }
 
+        /* Typing Animation */
         @keyframes typing {
             from { width: 0; }
             to { width: 12ch; }
         }
 
+        /* Blinking Cursor */
         @keyframes blink {
             from, to { border-color: transparent; }
             50% { border-color: white; }
         }
 
+        /* Glitch Effect */
         @keyframes glitch {
             0% {
                 text-shadow: 2px 2px red;
+                transform: translate(0);
             }
-            25% {
+            20% {
                 text-shadow: -2px -2px blue;
+                transform: translate(-3px, 3px) skew(0.5deg);
             }
-            50% {
+            40% {
                 text-shadow: 2px -2px green;
+                transform: translate(3px, -3px) skew(-0.5deg);
             }
-            75% {
+            60% {
                 text-shadow: -2px 2px yellow;
+                transform: translate(-3px, 3px) skew(0.5deg);
+            }
+            80% {
+                text-shadow: 3px 3px cyan;
+                transform: translate(3px, -3px) skew(-0.5deg);
             }
             100% {
                 text-shadow: 0px 0px white;
+                transform: translate(0);
             }
         }
 
+        /* Random Glitchy Segments */
+        h1::before, h1::after {
+            content: 'Joshua uwu';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: none;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-clip 3s infinite;
+            opacity: 0.8;
+        }
+
+        h1::before {
+            text-shadow: -3px 0 blue;
+            animation: glitch-clip 2s infinite alternate-reverse;
+        }
+
+        h1::after {
+            text-shadow: 3px 0 red;
+            animation: glitch-clip 2.5s infinite alternate;
+        }
+
+        @keyframes glitch-clip {
+            0% {
+                clip: rect(0, 900px, 0, 0);
+            }
+            20% {
+                clip: rect(30px, 900px, 45px, 0);
+            }
+            40% {
+                clip: rect(0px, 900px, 85px, 0);
+            }
+            60% {
+                clip: rect(50px, 900px, 70px, 0);
+            }
+            80% {
+                clip: rect(20px, 900px, 30px, 0);
+            }
+            100% {
+                clip: rect(0, 900px, 0, 0);
+            }
+        }
     </style>
 </head>
 <body>
