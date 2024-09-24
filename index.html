@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bouncing Text Animation</title>
+    <title>Soon</title>
     <style>
         body {
             margin: 0;
@@ -15,52 +15,53 @@
             background-color: black;
         }
         #bouncingText {
-            font-size: 40px;
+            font-size: 10vw;
+            color: white;
             position: absolute;
         }
     </style>
 </head>
 <body>
-    <div id="bouncingText">Joshua UwU</div>
-    <script>
-        const text = document.getElementById('bouncingText');
-        let posX = 0;
-        let posY = 0;
-        let deltaX = 2;
-        let deltaY = 2;
+<div id="bouncingText">Joshua UwU</div>
+<script>
+    const text = document.getElementById('bouncingText');
+    let posX = 0;
+    let posY = 0;
+    let deltaX = 2;
+    let deltaY = 2;
 
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function bounce() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        posX += deltaX;
+        posY += deltaY;
+
+        if (posX + text.offsetWidth >= screenWidth || posX <= 0) {
+            deltaX *= -1;
+            text.style.color = getRandomColor();
+        }
+        if (posY + text.offsetHeight >= screenHeight || posY <= 0) {
+            deltaY *= -1;
+            text.style.color = getRandomColor();
         }
 
-        function bounce() {
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
+        text.style.left = posX + 'px';
+        text.style.top = posY + 'px';
 
-            posX += deltaX;
-            posY += deltaY;
+        requestAnimationFrame(bounce);
+    }
 
-            if (posX + text.offsetWidth >= screenWidth || posX <= 0) {
-                deltaX *= -1;
-                text.style.color = getRandomColor();
-            }
-            if (posY + text.offsetHeight >= screenHeight || posY <= 0) {
-                deltaY *= -1;
-                text.style.color = getRandomColor();
-            }
-
-            text.style.left = posX + 'px';
-            text.style.top = posY + 'px';
-
-            requestAnimationFrame(bounce);
-        }
-
-        bounce();
-    </script>
+    bounce();
+</script>
 </body>
 </html>
