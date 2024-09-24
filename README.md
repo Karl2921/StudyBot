@@ -1,2 +1,2 @@
 <h1>Soon!</h1>
-<h6>Shoutout Joshua Correa</h6>
+<h6>Shoutout to Joshua Correa</h6>
