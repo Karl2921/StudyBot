@@ -1,1 +1,2 @@
-For upcoming robotics tournament
+#Soon!
+##Shoutout Joshua Correa
