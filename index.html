@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soon</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+        #JoshuaOwO {
+            font-size: 10vw;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="JoshuaOwO">Joshua UwU</div>
+<script>
+    const text = document.getElementById('JoshuaOwO');
+    let posX = Math.random() * window.innerWidth;
+    let posY = Math.random() * window.innerHeight;
+    let deltaX = 2;
+    let deltaY = 2;
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    function bounce() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        posX += deltaX;
+        posY += deltaY;
+        if (posX + text.offsetWidth >= screenWidth) {
+            posX = screenWidth - text.offsetWidth;
+            deltaX *= -1;
+            text.style.color = getRandomColor();
+        }
+        if (posX <= 0) {
+            posX = 0;
+            deltaX *= -1;
+            text.style.color = getRandomColor();
+        }
+        if (posY + text.offsetHeight >= screenHeight) {
+            posY = screenHeight - text.offsetHeight;
+            deltaY *= -1;
+            text.style.color = getRandomColor();
+        }
+        if (posY <= 0) {
+            posY = 0;
+            deltaY *= -1;
+            text.style.color = getRandomColor();
+        }
+        text.style.left = posX + 'px';
+        text.style.top = posY + 'px';
+        requestAnimationFrame(bounce);
+    }
+    bounce();
+</script>
+</body>
+</html>
