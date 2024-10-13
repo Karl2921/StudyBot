@@ -1,79 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soon</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: black;
-        }
-        #JoshuaOwO {
-            font-size: 10vw;
-            color: white;
-            position: absolute;
-        }
-    </style>
+    <title>StudyBot</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<div id="JoshuaOwO">Joshua UwU</div>
-<script>
-    const text = document.getElementById('JoshuaOwO');
-    let posX = Math.random() * window.innerWidth;
-    let posY = Math.random() * window.innerHeight;
-    let deltaX = 2;
-    let deltaY = 2;
+    <header class="Header">
+        <h1>StudyBot</h1>
+    </header>
 
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+    <div class="TitlesContainer">
+        <div class="QuestionListTitle">
+            <h2>Question List</h2>
+        </div>
+    </div>
 
-    function bounce() {
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
+    <main class="Container" , id="questionListsContainer">
+    </main>
 
-        posX += deltaX;
-        posY += deltaY;
 
-        if (posX + text.offsetWidth >= screenWidth) {
-            posX = screenWidth - text.offsetWidth;
-            deltaX *= -1;
-            text.style.color = getRandomColor();
-        }
-        if (posX <= 0) {
-            posX = 0;
-            deltaX *= -1;
-            text.style.color = getRandomColor();
-        }
-        if (posY + text.offsetHeight >= screenHeight) {
-            posY = screenHeight - text.offsetHeight;
-            deltaY *= -1;
-            text.style.color = getRandomColor();
-        }
-        if (posY <= 0) {
-            posY = 0;
-            deltaY *= -1;
-            text.style.color = getRandomColor();
-        }
-
-        text.style.left = posX + 'px';
-        text.style.top = posY + 'px';
-
-        requestAnimationFrame(bounce);
-    }
-
-    bounce();
-</script>
+    <!-- Footer Section -->
+    <footer class="Footer">
+        <div class="button-container">
+            <button id="addQuestionList">Add Question List</button>
+            <button id="generateQuestions">Generate Questions</button>
+        </div>
+    </footer>
+    <script src="script.js" type="module"></script>
 </body>
+
 </html>
