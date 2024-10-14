@@ -2,6 +2,7 @@ const generateQuestionUrl = "https://studybotapi.pythonanywhere.com/api/generate
 const questionCharacterLengthLimit = 40;
 const choicesCharacterLengthLimit = 9;
 const withChoices = true;
+let currentlyGeneratingQuestion = false;
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -34,30 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
     generateButton.addEventListener('click', async () => {
         const topicInput = document.getElementById('topicInput');
         const questionTopic = topicInput.value.trim();
-        const loadingSpinner = document.getElementById('loadingSpinner'); // Get spinner element
-
         if (questionTopic === '') {
             alert('Please enter a topic before generating questions.');
             return;
         }
-
-        if (localStorage.getItem('currentlyGeneratingQuestion')) {
+        if(currentlyGeneratingQuestion){
             alert("Already Generating, please wait!");
             return;
         }
-
-        // Show loading spinner
-        loadingSpinner.style.display = 'block';
-        localStorage.setItem('currentlyGeneratingQuestion', true);
-
+        currentlyGeneratingQuestion = true;
         const difficultyInput = document.getElementById('difficultyValue');
         const quantityInput = document.getElementById('quantityValue');
-        const descriptionInput = document.getElementById('optionalDescription');
+        const descriptionInput = document.getElementById('optionalDescription')
 
         const questionAmount = quantityInput.textContent;
-        const difficulty = difficultyInput.textContent; // Corrected this part
+        const difficulty = difficultyInput;
         const optionalDescription = descriptionInput.value.trim();
 
+        // Prepare the parameters for the POST request
         const params = {
             "topic": questionTopic,
             "numberOfQuestions": parseInt(questionAmount),
@@ -82,20 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = await response.json();
-            const newData = { "title": questionTopic, "questions": data };
+            const newData = {"title": questionTopic, "questions": data}
             localStorage.setItem('generatedQuestionParams', JSON.stringify(newData));
+            currentlyGeneratingQuestion = false;
             window.location.href = 'index.html';
 
         } catch (error) {
             console.error('Error:', error);
             alert('An error occurred while generating questions.');
-            localStorage.setItem('currentlyGeneratingQuestion', false);
-        } finally {
-            // Hide loading spinner
-            loadingSpinner.style.display = 'none';
+            currentlyGeneratingQuestion = false;
         }
     });
-
 });
 
 // Function to create a dropdown
@@ -134,4 +126,3 @@ document.addEventListener('click', (event) => {
         dropdowns.forEach(dropdown => dropdown.style.display = 'none');
     }
 });
-
