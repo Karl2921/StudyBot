@@ -224,7 +224,7 @@ addButton.addEventListener('click', () => {
 
 generateQuestionsButton.addEventListener('click', () => {
     // Redirect to another HTML page
-    window.location.href = 'generateQuestion/generate_question.html'; // Change this to your desired URL
+    window.location.href = 'generate_question'; // Change this to your desired URL
 });
 
 
