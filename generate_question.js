@@ -52,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentlyGeneratingQuestion = true;
 
 
-        currentlyGeneratingQuestion = true;
-
         const difficultyInput = document.getElementById('difficultyValue');
         const quantityInput = document.getElementById('quantityValue');
         const descriptionInput = document.getElementById('optionalDescription')
@@ -98,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             currentlyGeneratingQuestion = false;
         } finally {
-            // Hide loading spinner
             loadingSpinner.style.display = 'none';
-
             currentlyGeneratingQuestion = false;
 
         }

@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Question Generator</title>
     <link rel="stylesheet" href="generate_question_styles.css">
 </head>
-
 <body>
     <div class="outerContainer">
         <div class="letterboxContainer">
             <input id="topicInput" type="text" class="letterboxInput" placeholder="Enter your topic here...">
             <button id="generateButton" class="generateBtn">Generate</button>
-            <div id="loadingSpinner" class="loadingSpinner"></div>
         </div>
 
         <div class="buttonGroup">
@@ -30,7 +27,9 @@
         <textarea id="optionalDescription" class="largeTextarea"
             placeholder="Enter question description here"></textarea>
     </div>
+
+    <div id="loadingSpinner" class="loadingSpinner"></div>
+
     <script src="generate_question.js"></script>
 </body>
-
 </html>
