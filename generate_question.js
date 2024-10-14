@@ -4,6 +4,7 @@ const choicesCharacterLengthLimit = 9;
 const withChoices = true;
 let currentlyGeneratingQuestion = false;
 
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const difficultyButtonWrapper = document.querySelector('.buttonWrapper:nth-child(1)');
@@ -39,11 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Please enter a topic before generating questions.');
             return;
         }
+
         if(currentlyGeneratingQuestion){
             alert("Already Generating, please wait!");
             return;
         }
+
+
+        // Show loading spinner
+        loadingSpinner.style.display = 'block';
         currentlyGeneratingQuestion = true;
+
+
+        currentlyGeneratingQuestion = true;
+
         const difficultyInput = document.getElementById('difficultyValue');
         const quantityInput = document.getElementById('quantityValue');
         const descriptionInput = document.getElementById('optionalDescription')
@@ -85,7 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error:', error);
             alert('An error occurred while generating questions.');
+
             currentlyGeneratingQuestion = false;
+        } finally {
+            // Hide loading spinner
+            loadingSpinner.style.display = 'none';
+
+            currentlyGeneratingQuestion = false;
+
         }
     });
 });
