@@ -1,0 +1,176 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.outerContainer {
+    position: relative;
+    padding: 20px;
+    border: 3px solid #ff9900;
+    background-color: #ffcc66;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    overflow: hidden;
+}
+
+.letterboxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.letterboxInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.letterboxInput:focus {
+    border-color: #ff6600;
+}
+
+.generateBtn {
+    padding: 10px 15px;
+    background-color: #ff9900;
+    color: white;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.generateBtn:hover {
+    background-color: #ff6600;
+    transform: scale(1.05);
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.buttonWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.optionBtn, .dropdownBtn {
+    padding: 10px;
+    background-color: #ff9900;
+    color: white;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    width: auto;
+}
+
+.optionBtn:hover, .dropdownBtn:hover {
+    background-color: #ff6600;
+    transform: scale(1.05);
+}
+
+.largeTextarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.largeTextarea:focus {
+    border-color: #ff6600;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: absolute; /* Position absolutely relative to button wrapper */
+    background-color: white;
+    top: 120%; /* Position below the button */
+    left: 0; /* Align it to the left edge of the button */
+    border: 1px solid #ccc;
+    z-index: 1000; /* Keep it on top of other elements */
+    width: 100%; /* Full width of the button */
+    max-height: 200px; /* Limit height */
+    overflow-y: auto; /* Scroll if needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a slight shadow for better visibility */
+    display: none; /* Initially hidden */
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+}
+
+.letterboxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.letterboxInput {
+    width: 300px;
+}
+
+.generateBtn {
+    margin-left: 10px;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 4px solid #ef8a1c;
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    flex-shrink: 0;
+}
+
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 600px) {
+    .letterboxContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .spinner, .generateBtn {
+        align-self: flex-end;
+        margin-top: 10px; /* Add spacing for better layout */
+    }
+}
