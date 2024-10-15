@@ -49,6 +49,10 @@ body {
     background-color: #ff9900;
     color: white;
     border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .generateBtn:hover {
@@ -58,19 +62,19 @@ body {
 
 .buttonGroup {
     display: flex;
-    gap: 10px; /* Reduced gap */
+    gap: 10px; 
     margin-bottom: 20px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap; 
 }
 
 .buttonWrapper {
-    position: relative; /* Set position relative for dropdowns */
+    position: relative; 
     display: flex;
-    align-items: center; /* Center buttons vertically */
+    align-items: center; 
 }
 
 .optionBtn, .dropdownBtn {
-    padding: 10px; /* Adjusted padding */
+    padding: 10px; 
     background-color: #ff9900;
     color: white;
     border: 2px solid #333;
@@ -78,7 +82,7 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s;
-    width: auto; /* Maintain width for buttons */
+    width: auto; 
 }
 
 .optionBtn:hover, .dropdownBtn:hover {
@@ -87,9 +91,9 @@ body {
 }
 
 .largeTextarea {
-    width: 100%; /* Full width for textarea */
-    height: 150px; /* Adjusted height */
-    padding: 10px; /* Adjusted padding */
+    width: 100%; 
+    height: 150px; 
+    padding: 10px; 
     font-size: 16px;
     border: 2px solid #333;
     border-radius: 5px;
@@ -97,7 +101,7 @@ body {
     resize: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease;
-    box-sizing: border-box; /* Include padding and border in width */
+    box-sizing: border-box; 
 }
 
 .largeTextarea:focus {
@@ -143,17 +147,16 @@ body {
     margin-left: 10px; 
 }
 
-.loadingSpinner {
-    margin-top: 15px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-top: 4px solid #333;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
+.loading-spinner {
+    margin-right: 10px; 
     display: none; 
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #333;
+    animation: spin 1s ease infinite;
 }
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -163,21 +166,19 @@ body {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .letterboxContainer {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
+        justify-content: flex-start; 
     }
 
     .generateBtn {
-        margin-top: 0; /* Remove top margin for horizontal layout */
-        margin-left: 10px; /* Add margin to separate from input */
+        margin-top: 0; 
+        margin-left: 10px; 
     }
 
-    /* Ensure spinner stays below the "Generate" button on desktop */
+   
     .loadingSpinner {
-        margin-top: 10px; /* Keep a consistent gap below the button */
-        align-self: flex-start; /* Align the spinner below the button */
+        margin-top: 10px; 
+        align-self: flex-start;
     }
 }
