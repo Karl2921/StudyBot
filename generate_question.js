@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
     
                 const jsonInput = await response.text();
+                console.log(jsonInput);
                 const data = JSON.parse(jsonInput);
                 const newData = {"title": questionTopic, "questions": data}
                 localStorage.setItem('generatedQuestionParams', JSON.stringify(newData));
