@@ -1,4 +1,4 @@
-const generateQuestionUrl = "https://studybotapi.pythonanywhere.com/api/generateChoices";
+const generateQuestionUrl = "https://studybotapi.pythonanywhere.com/api/getQuestions";
 const questionCharacterLengthLimit = 40;
 const choicesCharacterLengthLimit = 9;
 const withChoices = true;
@@ -58,25 +58,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const difficulty = difficultyInput.textContent;
         const optionalDescription = descriptionInput.value.trim();
 
-        const params = {
-            "topic": questionTopic,
-            "numberOfQuestions": parseInt(questionAmount),
-            "difficulty": difficulty,
-            "withChoices": withChoices,
-            "questionCharacterLimit": questionCharacterLengthLimit,
-            "choicesCharacterLimit": choicesCharacterLengthLimit,
-            "optionalDescription": optionalDescription
-        };
-
+        const queryParams = new URLSearchParams({
+            topic: questionTopic,
+            numberOfQuestions: parseInt(questionAmount),
+            difficulty: difficulty,
+            withChoices: withChoices,
+            questionCharacterLimit: questionCharacterLengthLimit,
+            choicesCharacterLimit: choicesCharacterLengthLimit,
+            optionalDescription: optionalDescription
+        });
+        
+        const urlWithParams = `${generateQuestionUrl}?${queryParams.toString()}`;
         for(let currentIteration = 0; currentIteration < maxGenerationRetries; currentIteration++){
             console.log(currentIteration);
             try {
-                const response = await fetch(generateQuestionUrl, {
+                const response = await fetch(urlWithParams, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(params)
+                    }
                 });
     
                 if (!response.ok) {
