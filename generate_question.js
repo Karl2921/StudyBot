@@ -3,6 +3,7 @@ const questionCharacterLengthLimit = 40;
 const choicesCharacterLengthLimit = 9;
 const withChoices = true;
 let currentlyGeneratingQuestion = false;
+const maxGenerationRetries = 5;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -71,35 +72,38 @@ document.addEventListener('DOMContentLoaded', () => {
             "optionalDescription": optionalDescription
         };
 
-        try {
-            const response = await fetch(generateQuestionUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(params)
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+        for(let currentIteration = 0; currentIteration < maxGenerationRetries; currentIteration++){
+            console.log(currentIteration);
+            try {
+                const response = await fetch(generateQuestionUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(params)
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const data = await response.json();
+                const newData = {"title": questionTopic, "questions": data}
+                localStorage.setItem('generatedQuestionParams', JSON.stringify(newData));
+                currentlyGeneratingQuestion = false;
+                window.location.href = 'index.html';
+                break;
+    
+            } catch (error) {
+                if(currentIteration === maxGenerationRetries - 1){
+                    alert('An error occurred while generating questions.');
+                }
+                currentlyGeneratingQuestion = false;
+                continue;
             }
-
-            const data = await response.json();
-            const newData = {"title": questionTopic, "questions": data}
-            localStorage.setItem('generatedQuestionParams', JSON.stringify(newData));
-            currentlyGeneratingQuestion = false;
-            window.location.href = 'index.html';
-
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred while generating questions.');
-
-            currentlyGeneratingQuestion = false;
-        } finally {
-            loadingSpinner.style.display = 'none';
-            currentlyGeneratingQuestion = false;
-
         }
+        loadingSpinner.style.display = 'none';
+        currentlyGeneratingQuestion = false;
     });
 });
 
