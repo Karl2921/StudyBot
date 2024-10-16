@@ -8,11 +8,15 @@ body {
 
 .Header {
     background: #eb9d02;
-    text-align: center;
     padding: 10px;
     font-size: 18px;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
+
 
 .TitlesContainer {
     display: flex;
