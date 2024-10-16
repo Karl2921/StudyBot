@@ -14,14 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const difficultyOptions = ['Easy', 'Medium', 'Hard', 'Random'];
     const quantityOptions = Array.from({ length: 10 }, (_, i) => (i + 1) * 5); // Creates [5, 10, 15, ..., 50]
 
-    // Create dropdown elements for difficulty
     const difficultyDropdown = createDropdown(difficultyOptions, "difficultyValue");
     const quantityDropdown = createDropdown(quantityOptions.map(num => num.toString()), "quantityValue");
 
     difficultyButtonWrapper.appendChild(difficultyDropdown);
     quantityButtonWrapper.appendChild(quantityDropdown);
 
-    // Add event listeners to the buttons
     const difficultyButton = difficultyButtonWrapper.querySelector('#difficultyDropdown');
     const quantityButton = quantityButtonWrapper.querySelector('#quantityDropdown');
     const generateButton = document.getElementById('generateButton');
@@ -48,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        // Show loading spinner
         loadingSpinner.style.display = 'block';
         currentlyGeneratingQuestion = true;
 
@@ -58,10 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const descriptionInput = document.getElementById('optionalDescription')
 
         const questionAmount = quantityInput.textContent;
-        const difficulty = difficultyInput;
+        const difficulty = difficultyInput.textContent;
         const optionalDescription = descriptionInput.value.trim();
 
-        // Prepare the parameters for the POST request
         const params = {
             "topic": questionTopic,
             "numberOfQuestions": parseInt(questionAmount),
@@ -107,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Function to create a dropdown
 function createDropdown(options, buttonInput) {
     const dropdown = document.createElement('div');
     dropdown.classList.add('dropdown');
@@ -117,7 +112,6 @@ function createDropdown(options, buttonInput) {
         optionElement.classList.add('dropdown-item');
         optionElement.textContent = option;
 
-        // Add click event to update button text and close dropdown
         optionElement.addEventListener('click', () => {
             const button = document.getElementById(buttonInput);
             button.textContent = option;
@@ -131,12 +125,10 @@ function createDropdown(options, buttonInput) {
     return dropdown;
 }
 
-// Function to toggle the dropdown visibility
 function toggleDropdown(dropdown) {
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
-// Close dropdowns when clicking outside
 document.addEventListener('click', (event) => {
     if (!event.target.closest('.buttonWrapper')) {
         const dropdowns = document.querySelectorAll('.dropdown');
