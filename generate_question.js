@@ -1,6 +1,6 @@
 const generateQuestionUrl = "https://studybotapi.pythonanywhere.com/api/getQuestions";
 const questionCharacterLengthLimit = 40;
-const choicesCharacterLengthLimit = 9;
+const choicesCharacterLengthLimit = 17;
 const withChoices = true;
 let currentlyGeneratingQuestion = false;
 const maxGenerationRetries = 5;
