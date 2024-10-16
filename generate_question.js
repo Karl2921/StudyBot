@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
     
-                const data = await response.json();
+                const jsonInput = await response.text();
+                const data = JSON.parse(jsonInput);
                 const newData = {"title": questionTopic, "questions": data}
                 localStorage.setItem('generatedQuestionParams', JSON.stringify(newData));
                 currentlyGeneratingQuestion = false;
